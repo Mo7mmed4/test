@@ -1,0 +1,5 @@
+# ORBIT ATLAS Vercel
+
+Deploy from the repository `Mo7mmed4/test`, project root `orbit-atlas`. The public page is `index.html`; API routes are `/api/data` and `/api/health`. Python Function uses gzip, Vercel shared CDN response cache (2-hour max age), and temporary filesystem cache only. The function may need to download 3 CelesTrak CSV files on initial cache miss; free hosting and upstream provider availability can limit reliability. CelesTrak catalogs contain only publicly available orbit elements; this is not an all-object detector nor a live military radar. The military category is sourced from the publicly listed MILITARY group. No database, independent orbit determination, observatory feed integration or persistent 24/7 ingestion exists. The CelesTrak data and SGP4 calculations are refreshed separately; timestamps are displayed in the UI. Avoid frequent refresh. Source and license terms apply.
+
+Status: This README documents deployment setup, not a claim that a production deployment is ready.
