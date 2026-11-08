@@ -27,12 +27,12 @@ FEEDS = [
     ('celestrak-military', 'CelesTrak public military GP', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=MILITARY&FORMAT=JSON', 'enabled'),
     ('celestrak-stations', 'CelesTrak space stations', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=STATIONS&FORMAT=JSON', 'enabled'),
     ('celestrak-visual', 'CelesTrak visual', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=VISUAL&FORMAT=JSON', 'enabled'),
-    ('celestrak-cosmos-debris', 'CelesTrak Cosmos 2251 debris', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=COSMOS-2251-DEB&FORMAT=JSON', 'enabled'),
-    ('celestrak-iridium-debris', 'CelesTrak Iridium 33 debris', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=IRIDIUM-33-DEB&FORMAT=JSON', 'enabled'),
-    ('celestrak-fengyun-debris', 'CelesTrak Fengyun-1C debris', 'CelesTrak', 'orbit', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=FENGYUN-1C-DEB&FORMAT=JSON', 'enabled'),
+    ('celestrak-cosmos-debris', 'COSMOS 2251 debris mirror', 'Satvisor mirror of CelesTrak', 'orbit', 'https://raw.githubusercontent.com/satvisorcom/satvisor-data/master/celestrak/json/cosmos-2251-debris.json', 'enabled'),
+    ('celestrak-iridium-debris', 'IRIDIUM 33 debris mirror', 'Satvisor mirror of CelesTrak', 'orbit', 'https://raw.githubusercontent.com/satvisorcom/satvisor-data/master/celestrak/json/iridium-33-debris.json', 'enabled'),
+    ('celestrak-fengyun-debris', 'Fengyun-1C debris mirror', 'Satvisor mirror of CelesTrak', 'orbit', 'https://raw.githubusercontent.com/satvisorcom/satvisor-data/master/celestrak/json/fengyun-1c-debris.json', 'enabled'),
     ('satnogs-tle', 'SatNOGS latest TLE records', 'SatNOGS', 'orbit-observatory', 'https://db.satnogs.org/api/tle/?page_size=100', 'enabled'),
     ('satnogs-satellites', 'SatNOGS satellite registry', 'SatNOGS', 'metadata', 'https://db.satnogs.org/api/satellites/?page_size=50', 'enabled'),
-    ('satnogs-optical', 'SatNOGS optical observations', 'SatNOGS', 'observations', 'https://db.satnogs.org/api/optical-observations/?page_size=20', 'enabled'),
+    ('satnogs-optical', 'SatNOGS optical observations', 'SatNOGS', 'observations', 'https://optical.satnogs.org/data', 'not-automatic'),
     ('satnogs-network', 'SatNOGS ground observations', 'SatNOGS', 'observations', 'https://network.satnogs.org/api/observations/?page_size=20', 'enabled'),
     ('satnogs-telemetry', 'SatNOGS downlinked telemetry', 'SatNOGS', 'observations', 'https://db.satnogs.org/api/telemetry/?page_size=20', 'available-not-polled'),
     ('satnogs-ground-stations', 'SatNOGS station registry', 'SatNOGS', 'metadata', 'https://network.satnogs.org/api/stations/', 'available-not-polled'),
@@ -111,7 +111,7 @@ def run():
     values={'cache-active':(primary,primary_error)}
     keys=['celestrak-military','celestrak-stations','celestrak-visual',
           'celestrak-cosmos-debris','celestrak-iridium-debris','celestrak-fengyun-debris',
-          'satnogs-tle','satnogs-satellites','satnogs-optical','satnogs-network']
+          'satnogs-tle','satnogs-satellites','satnogs-network']
     if not primary:keys.insert(0,'celestrak-active')
     # Cap request concurrency; overlimit providers are never retried in a loop.
     with ThreadPoolExecutor(max_workers=5) as pool:
