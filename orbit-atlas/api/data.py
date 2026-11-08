@@ -3,11 +3,11 @@ from http.server import BaseHTTPRequestHandler
 import gzip,json,os,sys,time
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from server import compile_data
+from server import dataset
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
-            data=compile_data()
+            data=json.loads(dataset())
             payload=json.dumps(data,ensure_ascii=False,separators=(',',':')).encode('utf8')
             if len(payload)>50_000_000:raise RuntimeError('result exceeded configured output cap')
             encoded=gzip.compress(payload,compresslevel=5)
