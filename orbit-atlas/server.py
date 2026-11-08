@@ -5,7 +5,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlsplit
 
 ROOT=pathlib.Path(__file__).resolve().parent
-CACHE=ROOT/'cache'
+CACHE=pathlib.Path(os.environ.get('ORBIT_ATLAS_CACHE_DIR', '/tmp/orbit-atlas'))
 CACHE.mkdir(exist_ok=True)
 SOURCES={
  'orbit':('https://celestrak.org/pub/TLE/catalog.csv',7440),
