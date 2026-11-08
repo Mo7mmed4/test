@@ -42,7 +42,7 @@ def source(name):
   mf.write_text(json.dumps(m),encoding='utf8')
   err=m.get('error')
  if not f.exists():return [],{'url':url,'rows':0,'stale':True,'updated':None,'error':err or 'no data'}
- with f.open(encoding='utf8-sig',newline='') as fp:rows=list(csv.DictReader(fp))
+ with f.open(encoding='utf-8-sig',newline='') as fp:rows=list(csv.DictReader(fp))
  return rows,{'url':url,'rows':len(rows),'stale':time.time()-float(m.get('retrieved',0))>ttl,'updated':m.get('retrieved'),'error':err}
 def sid(row):
  try:return str(int(row['NORAD_CAT_ID']))
